@@ -4,9 +4,13 @@ let navbar = document.querySelector('.navbar');
 
 menuIcon.onclick = () => {
     menuIcon.classList.toggle('bx-x');
-    navbar.classList.toggle('active')
+    navbar.classList.toggle('active');
+    if (navbar.classList.contains('active')) {
+        navbar.style.left = '0'; // Mostrar el navbar al desplegarlo
+    } else {
+        navbar.style.left = '-100%'; // Ocultar el navbar al cerrarlo
+    }
 };
-
 
 /*==================== scroll sections active link ====================*/
 let sections = document.querySelectorAll('section');
@@ -22,7 +26,7 @@ window.onscroll = () => {
         if (top >= offset && top < offset + height) {
             navLinks.forEach(links => {
                 links.classList.remove('active');
-                document.querySelector('header nav a[href *=' + id + ']').classList.add('active');
+                document.querySelector('header nav a[href*="' + id + '"]').classList.add('active');
             });
         };
     });
@@ -48,7 +52,7 @@ ScrollReveal().reveal('.home-content p, .about-content' , { origin: 'rigth'});
 
 /*==================== typed js ====================*/
 
-const typed = new Typed('.multiple-text', {
+const typed = new Typed('.animated-text', {
     strings: ['Systems Engineer', 'Software Developer', 'Data Analyst'],
     typeSpeed: 100,
     backSpeed: 100,
